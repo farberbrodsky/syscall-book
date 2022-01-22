@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>מבוא - 352 דרכים להשתמש בלינוקס</title>
+        <title>סיסקול 2 - open - 352 דרכים להשתמש בלינוקס</title>
                 
 
         <!-- Custom HTML head -->
@@ -14,21 +14,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-                <link rel="icon" href="favicon.svg">
-                        <link rel="shortcut icon" href="favicon.png">
-                <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-                <link rel="stylesheet" href="css/print.css" media="print">
+                <link rel="icon" href="../favicon.svg">
+                        <link rel="shortcut icon" href="../favicon.png">
+                <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+                <link rel="stylesheet" href="../css/print.css" media="print">
         
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-                <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+                <link rel="stylesheet" href="../fonts/fonts.css">
         
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         
@@ -36,7 +36,7 @@
     <body>
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> מבוא</a></li><li class="chapter-item expanded "><a href="basic_files/introduction.html"><strong aria-hidden="true">2.</strong> קבצים בסיסיים</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="basic_files/syscall-0-read.html"><strong aria-hidden="true">2.1.</strong> סיסקול 0 - read</a></li><li class="chapter-item expanded "><a href="basic_files/syscall-1-write.html"><strong aria-hidden="true">2.2.</strong> סיסקול 1 - write</a></li><li class="chapter-item expanded "><a href="basic_files/syscall-2-open.html"><strong aria-hidden="true">2.3.</strong> סיסקול 2 - open</a></li><li class="chapter-item expanded "><a href="basic_files/syscall-32-33-292-dup-dup2-dup3.html"><strong aria-hidden="true">2.4.</strong> סיסקול 32, 33, 292 - dup, dup2, dup3</a></li><li class="chapter-item expanded "><a href="basic_files/syscall-3-close.html"><strong aria-hidden="true">2.5.</strong> סיסקול 3 - close</a></li></ol></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> מבוא</a></li><li class="chapter-item expanded "><a href="../basic_files/introduction.html"><strong aria-hidden="true">2.</strong> קבצים בסיסיים</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic_files/syscall-0-read.html"><strong aria-hidden="true">2.1.</strong> סיסקול 0 - read</a></li><li class="chapter-item expanded "><a href="../basic_files/syscall-1-write.html"><strong aria-hidden="true">2.2.</strong> סיסקול 1 - write</a></li><li class="chapter-item expanded "><a href="../basic_files/syscall-2-open.html" class="active"><strong aria-hidden="true">2.3.</strong> סיסקול 2 - open</a></li><li class="chapter-item expanded "><a href="../basic_files/syscall-32-33-292-dup-dup2-dup3.html"><strong aria-hidden="true">2.4.</strong> סיסקול 32, 33, 292 - dup, dup2, dup3</a></li><li class="chapter-item expanded "><a href="../basic_files/syscall-3-close.html"><strong aria-hidden="true">2.5.</strong> סיסקול 3 - close</a></li></ol></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -114,7 +114,7 @@
                     <h1 class="menu-title">352 דרכים להשתמש בלינוקס</h1>
 
                     <div class="right-buttons">
-                                                <a href="print.html" title="Print this book" aria-label="Print this book">
+                                                <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                                                                         
@@ -143,30 +143,41 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="מבוא"><a class="header" href="#מבוא">מבוא</a></h1>
-<h2 id="מי"><a class="header" href="#מי">מי?</a></h2>
-<p>ה&quot;ספר&quot; הזה מיועד לאנשים עם ניסיון בתכנות C על לינוקס שרוצים להבין מה באמת קורה בתוך התוכנות שאנחנו כותבים, ואיך להשתמש נכון בכל הממשקים שלינוקס מציע לנו בתור מתכנתים.</p>
-<h2 id="מה-זה-סיסקול"><a class="header" href="#מה-זה-סיסקול">מה זה סיסקול?</a></h2>
-<p>כשאנחנו מריצים תוכנה במערכת הפעלה, מה שהמעבד עושה זה שהוא מריץ את הקוד של התוכנה. הקוד של מערכת ההפעלה רק יחזור לרוץ כשיש שגיאה או כשעושים סיסקול. איך שזה קורה זה שיש למעבד interruptים שיכולים לקרות כי הזזנו את העכבר או סתם כי השעון הפנימי של המעבד התעדכן. כל interrupt או סיסקול מכניס את המעבד לאיזור של הקוד של מערכת ההפעלה (לפי טבלת interruptים שנמצאת במקום קבוע בזיכרון) ומעביר את מצב הריצה למצב קרנל (שבו אפשר למשל לדבר עם מכשירים ישירות, משהו שתוכנות רגילות לא יכולות לעשות כי המעבד לא מרשה).</p>
-<p>כשאנחנו קוראים לסיסקול, אנחנו שמים ברגיסטר rax את מספר הסיסקול ומעבירים את שאר הפרמטרים לרוב גם ברגיסטרים, ואז בפעם הבאה שהקוד שלנו רץ מערכת ההפעלה מוודאת לשים ב-rax את התוצאה של הסיסקול. לכן, סיסקולים זה בעצם כל מה שמערכת ההפעלה נותנת לנו לעשות וכל תוכנה היא סתם משהו שמחליט לאיזה סיסקולים לקרוא ובאיזה סדר. בלינוקס יש (פעם אחרונה שבדקתי) 352 סיסקולים, ואלה כל הדרכים שבהם תוכנה יכולה לפעול.</p>
-<h2 id="שימוש-ב-errno"><a class="header" href="#שימוש-ב-errno">שימוש ב-errno</a></h2>
-<p>רוב הסיסקולים מחזירים -1 אם הייתה שגיאה, ומשנים את errno לפי השגיאה שהייתה. errno הוא מספר גלובלי שכדי להשתמש בו צריך לעשות <code>#include &lt;errno.h&gt;</code> והוא מקבל ערכים שונים על פי השגיאה שקרתה, כמו למשל EIO (Input/output error) או EPERM (Operation not permitted). אפשר להדפיס הודעת שגיאה עם <code>perror(&quot;oops&quot;)</code> שכותב את ההודעה שנותנים לו ואז אתה השם המלא של ה-errno שגרם לשגיאה.</p>
-<h2 id="איך-משתמשים-ב-man"><a class="header" href="#איך-משתמשים-ב-man">איך משתמשים ב-man</a></h2>
-<p>אחד הכלים הכי חשובים למתכנת על לינוקס הוא man. ב-man יש הסבר על כל הסיסקולים וכל הפקודות שמותקנות במערכת. אפילו אם אנחנו רוצים ללמוד על man, הדרך הנכונה היא לכתוב בטרמינל <code>man man</code>.</p>
-<p>אפשר גם למשל לכתוב <code>man read</code>, אבל זה יראה לנו את ה-manpage של הפקודה read בטרמינל ולא של הסיסקול read. זה כי man מחולק לסקשנים:</p>
-<ol>
-<li>תוכנות ופקודות ב-shell</li>
-<li><strong>סיסקולים</strong> (זה מה שמעניין אותנו)</li>
-<li>פונקציות בספרייה של C (למשל printf)</li>
-</ol>
-<p>וכו'... לכן אם אנחנו רוצים לקרוא על הסיסקול read, נכתוב בטרמינל <code>man 2 read</code>. אם משום מה רוצים לקרוא באינטרנט את הmanpage אפשר לחפש במנוע החיפוש המועדף עליכם: <code>read site:man7.org/linux/man-pages</code>.</p>
+                        <h1 id="סיסקול-2---open"><a class="header" href="#סיסקול-2---open">סיסקול 2 - open</a></h1>
+<pre><code class="language-c">int open(const char *pathname, int flags)
+int open(const char *pathname, int flags, mode_t mode)  // O_CREAT, O_TMPFILE
+</code></pre>
+<p>פותח את הקובץ שהשם שלו הוא pathname, ואם יש ב-flags את O_CREAT והקובץ לא קיים הוא גם יוצר קובץ חדש.</p>
+<p>ב-flags אפשר להעביר bitwise or (דרך נחמדה להעביר מלא בוליאנים בכך שכל ביט במספר מתאר לנו בוליאן אחר, שנקרא flag במקרה הזה) של:</p>
+<ul>
+<li>O_APPEND: לפני כל כתיבה, לשים את המיקום של הכתיבות ממש על סוף הקובץ.</li>
+<li>O_CREAT: ליצור את הקובץ אם הוא לא קיים, אם יוצרים אז לפי ה-file access mode שמועבר ב-mode.</li>
+<li>O_EXCL: תוספת ל-O_CREAT (O_EXCL | O_CREAT) שאומרת שהקובץ חייב להיוצר ואחרת מוחזרת שגיאה.</li>
+<li>O_TRUNC: אם הקובץ כבר קיים ומותר לכתוב אליו אז התוכן שלו ימחק (גודל הקובץ ישונה ל-0).</li>
+<li>O_NONBLOCK: לפתוח את הקובץ במצב nonblocking אם אפשר. במצב nonblocking שום פעולה לא תגרום לפרוסס לחכות, פעולות מחזירות מיד את זה שצריך לחכות (errno EAGAIN/EWOULDBLOCK).</li>
+<li>O_SYNC: לפני שכל פעולת כתיבה חוזרת, לחכות עד שהמידע באמת יכתב לדיסק. בדרך כלל המידע יכול להגיע לbuffer ואם המחשב יכבה פתאומית זה לא בהכרח יכתב אלא אם נקרא ל-fsync.</li>
+<li>O_PATH: התוכן של הקובץ לא מעניין אותנו אבל אנחנו רוצים לעשות עליו פעולות כמו stat ולהיות בטוחים שהקובץ שאנחנו עובדים איתו לא השתנה בלי ששמנו לב (שיכול לקרות אם משתמשים ב-pathname כמה פעמים).</li>
+<li>O_TMPFILE: ליצור קובץ ללא שם. ב-pathname מעבירים שם של תיקיה שבה יווצר הקובץ. ברגע שסוגרים לגמרי קובץ חסר שם ואף אחד לא צריך אותו הוא נמחק, אבל אפשר לתת לו שם עם סיסקולים שנראה בעתיד (linkat). ההתנהגות שבה קובץ באמת נמחק רק אחרי שלגמרי מפסיקים להשתמש בו שימושית למקרה שמוחקים קובץ שכבר פתחנו - הקובץ לא באמת ימחק עד שלא נסגור אותו. הסיבות שנרצה להשתמש ב-O_TMPFILE הן בשביל לעשות הרבה פעולות על הקובץ לפני שיוכלו לראות אותו מבחוץ כמו למשל לשנות את הבעלים, או אם למשל אנחנו רוצים להוריד קובץ לדיסק (כי זיכרון זה משאב מוגבל) ולהשתמש בו אבל בלי שנצטרך למחוק אותו.</li>
+<li>O_DIRECTORY: להחזיר שגיאה אם pathname הוא לא תיקיה.</li>
+</ul>
+<p><strong>למתקדמים (לא בקריאה הראשונה):</strong></p>
+<ul>
+<li>O_NOFOLLOW: לא לעקוב אחרי סימלינקים</li>
+<li>O_ASYNC: לשלוח סיגנל SIGIO בכל פעם שאפשר לקרוא או לכתוב לקובץ.</li>
+<li>O_CLOEXEC: הקובץ יסגר לקראת execve.</li>
+</ul>
+<p>ועוד...</p>
+<p><a href="https://man7.org/linux/man-pages/man2/open.2.html">עמוד ב-man</a></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                                                    <a rel="prev" href="../basic_files/syscall-1-write.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
                         
-                                                    <a rel="next" href="basic_files/introduction.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                                    <a rel="next" href="../basic_files/syscall-32-33-292-dup-dup2-dup3.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -176,8 +187,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                                    <a rel="prev" href="../basic_files/syscall-1-write.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
                 
-                                    <a rel="next" href="basic_files/introduction.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                    <a rel="next" href="../basic_files/syscall-32-33-292-dup-dup2-dup3.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                             </nav>
@@ -192,13 +206,13 @@
         </script>
         
         
-                <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+                <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
         
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
         

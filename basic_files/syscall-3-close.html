@@ -3,9 +3,8 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title></title>
-                        <base href="/">
-        
+        <title>סיסקול 3 - close - 352 דרכים להשתמש בלינוקס</title>
+                
 
         <!-- Custom HTML head -->
         
@@ -15,21 +14,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-                <link rel="icon" href="favicon.svg">
-                        <link rel="shortcut icon" href="favicon.png">
-                <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-                <link rel="stylesheet" href="css/print.css" media="print">
+                <link rel="icon" href="../favicon.svg">
+                        <link rel="shortcut icon" href="../favicon.png">
+                <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+                <link rel="stylesheet" href="../css/print.css" media="print">
         
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-                <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+                <link rel="stylesheet" href="../fonts/fonts.css">
         
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         
@@ -37,7 +36,7 @@
     <body>
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -83,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> מבוא</a></li><li class="chapter-item expanded "><a href="basic_files/introduction.html"><strong aria-hidden="true">2.</strong> קבצים בסיסיים</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="basic_files/syscall-0-read.html"><strong aria-hidden="true">2.1.</strong> סיסקול 0 - read</a></li><li class="chapter-item expanded "><a href="basic_files/syscall-1-write.html"><strong aria-hidden="true">2.2.</strong> סיסקול 1 - write</a></li><li class="chapter-item expanded "><a href="basic_files/syscall-2-open.html"><strong aria-hidden="true">2.3.</strong> סיסקול 2 - open</a></li><li class="chapter-item expanded "><a href="basic_files/syscall-32-33-292-dup-dup2-dup3.html"><strong aria-hidden="true">2.4.</strong> סיסקול 32, 33, 292 - dup, dup2, dup3</a></li><li class="chapter-item expanded "><a href="basic_files/syscall-3-close.html"><strong aria-hidden="true">2.5.</strong> סיסקול 3 - close</a></li></ol></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> מבוא</a></li><li class="chapter-item expanded "><a href="../basic_files/introduction.html"><strong aria-hidden="true">2.</strong> קבצים בסיסיים</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic_files/syscall-0-read.html"><strong aria-hidden="true">2.1.</strong> סיסקול 0 - read</a></li><li class="chapter-item expanded "><a href="../basic_files/syscall-1-write.html"><strong aria-hidden="true">2.2.</strong> סיסקול 1 - write</a></li><li class="chapter-item expanded "><a href="../basic_files/syscall-2-open.html"><strong aria-hidden="true">2.3.</strong> סיסקול 2 - open</a></li><li class="chapter-item expanded "><a href="../basic_files/syscall-32-33-292-dup-dup2-dup3.html"><strong aria-hidden="true">2.4.</strong> סיסקול 32, 33, 292 - dup, dup2, dup3</a></li><li class="chapter-item expanded "><a href="../basic_files/syscall-3-close.html" class="active"><strong aria-hidden="true">2.5.</strong> סיסקול 3 - close</a></li></ol></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -115,7 +114,7 @@
                     <h1 class="menu-title">352 דרכים להשתמש בלינוקס</h1>
 
                     <div class="right-buttons">
-                                                <a href="print.html" title="Print this book" aria-label="Print this book">
+                                                <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                                                                         
@@ -144,13 +143,20 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="document-not-found-404"><a class="header" href="#document-not-found-404">Document not found (404)</a></h1>
-<p>This URL is invalid, sorry. Please use the navigation bar or search to continue.</p>
+                        <h1 id="סיסקול-3---close"><a class="header" href="#סיסקול-3---close">סיסקול 3 - close</a></h1>
+<pre><code class="language-c">int close(int fd)
+</code></pre>
+<p>מפנה את המספר של fd, ורק אם fd הוא האחרון שמצביע ל-file description שלו אז הקובץ עצמו גם נסגר. ואפילו סגירה מלאה לא מבטיחה שהמידע נכתב לדיסק כי הקרנל הרבה פעמים שומר בזיכרון את מה שהוא מתכוון לכתוב כדי לא לחכות.</p>
+<p>השגיאות של close יכולות לנבוע מכך שכתיבה קודמת לא הצליחה אבל write חזר לפני שהשגיאה הפיזית קרתה (למשל אם נגמר המקום בדיסק). לכן אין סיבה לנסות שוב אם close לא הצליח.</p>
+<p><a href="https://man7.org/linux/man-pages/man2/close.2.html">עמוד ב-man</a></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                                                    <a rel="prev" href="../basic_files/syscall-32-33-292-dup-dup2-dup3.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
                         
                         
                         <div style="clear: both"></div>
@@ -159,6 +165,9 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                                    <a rel="prev" href="../basic_files/syscall-32-33-292-dup-dup2-dup3.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
                 
                             </nav>
 
@@ -172,13 +181,13 @@
         </script>
         
         
-                <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+                <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
         
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
         

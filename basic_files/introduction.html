@@ -3,9 +3,8 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title></title>
-                        <base href="/">
-        
+        <title>קבצים בסיסיים - 352 דרכים להשתמש בלינוקס</title>
+                
 
         <!-- Custom HTML head -->
         
@@ -15,21 +14,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-                <link rel="icon" href="favicon.svg">
-                        <link rel="shortcut icon" href="favicon.png">
-                <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-                <link rel="stylesheet" href="css/print.css" media="print">
+                <link rel="icon" href="../favicon.svg">
+                        <link rel="shortcut icon" href="../favicon.png">
+                <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+                <link rel="stylesheet" href="../css/print.css" media="print">
         
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-                <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+                <link rel="stylesheet" href="../fonts/fonts.css">
         
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         
@@ -37,7 +36,7 @@
     <body>
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -83,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> מבוא</a></li><li class="chapter-item expanded "><a href="basic_files/introduction.html"><strong aria-hidden="true">2.</strong> קבצים בסיסיים</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="basic_files/syscall-0-read.html"><strong aria-hidden="true">2.1.</strong> סיסקול 0 - read</a></li><li class="chapter-item expanded "><a href="basic_files/syscall-1-write.html"><strong aria-hidden="true">2.2.</strong> סיסקול 1 - write</a></li><li class="chapter-item expanded "><a href="basic_files/syscall-2-open.html"><strong aria-hidden="true">2.3.</strong> סיסקול 2 - open</a></li><li class="chapter-item expanded "><a href="basic_files/syscall-32-33-292-dup-dup2-dup3.html"><strong aria-hidden="true">2.4.</strong> סיסקול 32, 33, 292 - dup, dup2, dup3</a></li><li class="chapter-item expanded "><a href="basic_files/syscall-3-close.html"><strong aria-hidden="true">2.5.</strong> סיסקול 3 - close</a></li></ol></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> מבוא</a></li><li class="chapter-item expanded "><a href="../basic_files/introduction.html" class="active"><strong aria-hidden="true">2.</strong> קבצים בסיסיים</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic_files/syscall-0-read.html"><strong aria-hidden="true">2.1.</strong> סיסקול 0 - read</a></li><li class="chapter-item expanded "><a href="../basic_files/syscall-1-write.html"><strong aria-hidden="true">2.2.</strong> סיסקול 1 - write</a></li><li class="chapter-item expanded "><a href="../basic_files/syscall-2-open.html"><strong aria-hidden="true">2.3.</strong> סיסקול 2 - open</a></li><li class="chapter-item expanded "><a href="../basic_files/syscall-32-33-292-dup-dup2-dup3.html"><strong aria-hidden="true">2.4.</strong> סיסקול 32, 33, 292 - dup, dup2, dup3</a></li><li class="chapter-item expanded "><a href="../basic_files/syscall-3-close.html"><strong aria-hidden="true">2.5.</strong> סיסקול 3 - close</a></li></ol></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -115,7 +114,7 @@
                     <h1 class="menu-title">352 דרכים להשתמש בלינוקס</h1>
 
                     <div class="right-buttons">
-                                                <a href="print.html" title="Print this book" aria-label="Print this book">
+                                                <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                                                                         
@@ -144,14 +143,39 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="document-not-found-404"><a class="header" href="#document-not-found-404">Document not found (404)</a></h1>
-<p>This URL is invalid, sorry. Please use the navigation bar or search to continue.</p>
+                        <h1 id="קבצים-בסיסיים"><a class="header" href="#קבצים-בסיסיים">קבצים בסיסיים</a></h1>
+<p>מערכת הקבצים היא הלב של מערכת יוניקס. מעבר לכל הקבצים הרגילים שאנחנו עובדים איתם, יש גם תיקיות כמו <code>/proc</code> או <code>/dev</code> שהן וירטואליות ובעצם נותנות ללינוקס לייצג מבנים מורכבים בלי להמציא דרכים חדשות לתקשר עם הקרנל. למשל, תנסו לקרוא את <code>/proc/self/status</code>, שהוא ”קובץ“ שכתובים בו כל הפרטים על התהליך הנוכחי. בגלל שהכל בלינוקס מתרכז סביב מערכת הקבצים, הקרנל יכול להציע המון פיצ'רים באופן ברור ומוכר.</p>
+<p>כל קובץ על הדיסק שומר את המאפיינים הבאים (שאפשר לקרוא בעצמנו עם הפקודה <code>stat</code> בטרמינל):</p>
+<ul>
+<li>איזה user מחזיק בעלות על הקובץ (לפי מספר הuser)</li>
+<li>איזה group מחזיק בעלות על הקובץ (לפי מספר הgroup)</li>
+<li>מי יכול לגשת לקובץ, בביטים בסדר הבא (שנקראים גם file access mode):
+<ul>
+<li>set-user-id, set-group-id (שאיתם מממשים פקודות כמו סודו אבל זה ל לא ממש רלוונטי)</li>
+<li>sticky bit (גם לא ממש רלוונטי, בעיקר שימושי לתיקיות)</li>
+<li>user read, user write, user execute (האם מותר לבעלים של הקובץ לקרוא לכתוב ולהריץ)</li>
+<li>group read, group write, group execute</li>
+<li>all read, all write, all execute</li>
+</ul>
+</li>
+<li>מתי בפעם האחרונה קראו את הקובץ, ערכו את הקובץ, שינו את המאפיינים שלו, ומתי יצרו את הקובץ</li>
+<li>האם הקובץ רגיל או שזה קובץ וירטואלי מכל מני סוגים</li>
+</ul>
+<p>בכל תוכנה בלינוקס ולכל קובץ פתוח יש מספר שנקרא file descriptor. משתמשים ב-file descriptor כדי לפנות לקובץ פתוח מסוים. את ה-file descriptorים מקבלים מסיסקולים כמו open, מעבירים לסיסקולים כמו read ו-write ולבסוף סוגרים עם close.</p>
+<p><strong>הערה מעניינת:</strong> המספרים של ה-file descriptorים הם צפופים: בכל פעם שלינוקס יוצר file descriptor חדש, מובטח לנו שהוא יהיה המספר הכי נמוך שפנוי כרגע.</p>
+<p>בדרך כלל לתוכנה יש את ה-file descriptorים הבאים כשהיא מתחילה לרוץ: 0 הוא הקלט של התוכנה (ובעיקר עושים ממנו read), 1 הוא הפלט של התוכנה (ועושים אליו write), ו-2 הוא השגיאות של התוכנה (וגם אליו עושים write). הסיבה להפרדה בין 1 ל-2 היא שלפעמים מתעלמים מהפלט הרגיל אבל עדיין רוצים לראות שגיאות.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                                                    <a rel="prev" href="../introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
                         
+                                                    <a rel="next" href="../basic_files/syscall-0-read.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         
                         <div style="clear: both"></div>
                     </nav>
@@ -159,7 +183,13 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                                    <a rel="prev" href="../introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
                 
+                                    <a rel="next" href="../basic_files/syscall-0-read.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
                             </nav>
 
         </div>
@@ -172,13 +202,13 @@
         </script>
         
         
-                <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+                <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
         
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
         
