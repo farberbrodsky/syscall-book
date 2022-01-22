@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>סיסקול 32, 33, 292 - dup, dup2, dup3 - 352 דרכים להשתמש בלינוקס</title>
+        <title>סיסקול 59 - execve - 352 דרכים להשתמש בלינוקס</title>
                 
 
         <!-- Custom HTML head -->
@@ -82,7 +82,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> מבוא</a></li><li class="chapter-item expanded "><a href="../basic_files/introduction.html"><strong aria-hidden="true">2.</strong> קבצים בסיסיים</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic_files/syscall-0-read.html"><strong aria-hidden="true">2.1.</strong> סיסקול 0 - read</a></li><li class="chapter-item expanded "><a href="../basic_files/syscall-1-write.html"><strong aria-hidden="true">2.2.</strong> סיסקול 1 - write</a></li><li class="chapter-item expanded "><a href="../basic_files/syscall-2-open.html"><strong aria-hidden="true">2.3.</strong> סיסקול 2 - open</a></li><li class="chapter-item expanded "><a href="../basic_files/syscall-32-33-292-dup-dup2-dup3.html" class="active"><strong aria-hidden="true">2.4.</strong> סיסקול 32, 33, 292 - dup, dup2, dup3</a></li><li class="chapter-item expanded "><a href="../basic_files/syscall-3-close.html"><strong aria-hidden="true">2.5.</strong> סיסקול 3 - close</a></li></ol></li><li class="chapter-item expanded "><a href="../basic_processes/introduction.html"><strong aria-hidden="true">3.</strong> פרוססים בסיסיים</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic_processes/syscall-59-execve.html"><strong aria-hidden="true">3.1.</strong> סיסקול 59 - execve</a></li><li class="chapter-item expanded "><a href="../basic_processes/syscall-57-58-56-fork-vfork-clone.html"><strong aria-hidden="true">3.2.</strong> סיסקול 57, 58, 56 - fork, vfork, clone</a></li><li class="chapter-item expanded "><a href="../basic_processes/syscall-22-293-pipe-pipe2.html"><strong aria-hidden="true">3.3.</strong> סיסקול 22, 293 - pipe, pipe2</a></li><li class="chapter-item expanded "><a href="../basic_processes/pipe-fork-execve-example.html"><strong aria-hidden="true">3.4.</strong> דוגמה של pipe, fork ו-execve</a></li></ol></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../introduction.html"><strong aria-hidden="true">1.</strong> מבוא</a></li><li class="chapter-item expanded "><a href="../basic_files/introduction.html"><strong aria-hidden="true">2.</strong> קבצים בסיסיים</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic_files/syscall-0-read.html"><strong aria-hidden="true">2.1.</strong> סיסקול 0 - read</a></li><li class="chapter-item expanded "><a href="../basic_files/syscall-1-write.html"><strong aria-hidden="true">2.2.</strong> סיסקול 1 - write</a></li><li class="chapter-item expanded "><a href="../basic_files/syscall-2-open.html"><strong aria-hidden="true">2.3.</strong> סיסקול 2 - open</a></li><li class="chapter-item expanded "><a href="../basic_files/syscall-32-33-292-dup-dup2-dup3.html"><strong aria-hidden="true">2.4.</strong> סיסקול 32, 33, 292 - dup, dup2, dup3</a></li><li class="chapter-item expanded "><a href="../basic_files/syscall-3-close.html"><strong aria-hidden="true">2.5.</strong> סיסקול 3 - close</a></li></ol></li><li class="chapter-item expanded "><a href="../basic_processes/introduction.html"><strong aria-hidden="true">3.</strong> פרוססים בסיסיים</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic_processes/syscall-59-execve.html" class="active"><strong aria-hidden="true">3.1.</strong> סיסקול 59 - execve</a></li><li class="chapter-item expanded "><a href="../basic_processes/syscall-57-58-56-fork-vfork-clone.html"><strong aria-hidden="true">3.2.</strong> סיסקול 57, 58, 56 - fork, vfork, clone</a></li><li class="chapter-item expanded "><a href="../basic_processes/syscall-22-293-pipe-pipe2.html"><strong aria-hidden="true">3.3.</strong> סיסקול 22, 293 - pipe, pipe2</a></li><li class="chapter-item expanded "><a href="../basic_processes/pipe-fork-execve-example.html"><strong aria-hidden="true">3.4.</strong> דוגמה של pipe, fork ו-execve</a></li></ol></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -143,26 +143,27 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="סיסקול-32-33-292---dup-dup2-dup3"><a class="header" href="#סיסקול-32-33-292---dup-dup2-dup3">סיסקול 32, 33, 292 - dup, dup2, dup3</a></h1>
-<p><strong>הקדמה</strong>: כל file descriptor שאנחנו מכירים (בתור מספר שאנחנו מעבירים כל פעם ל-read ו-write ולבסוף ל-close) מצביע ל-file description בקרנל. אותו ה-file description יכול להיות בשימוש בכמה מספרים שונים ואפילו מכמה פרוססים שונים כפי שנראה מאוחר יותר. כל file description מחזיק מידע כמו איפה המצביע שיש לנו ל-read ו-write נמצא בקובץ וכו'. ה-file descriptor הוא סתם מספר שאנחנו משתמשים כדי לאמר לקרנל באיזה file description אנחנו מעוניינים.</p>
-<pre><code class="language-c">int dup(int oldfd)
-int dup2(int oldfd, int newfd)
-int dup3(int oldfd, int newfd, int flags)
+                        <h1 id="סיסקול-59---execve"><a class="header" href="#סיסקול-59---execve">סיסקול 59 - execve</a></h1>
+<pre><code class="language-c">int execve(const char *pathname, char *const argv[], char *const envp[])
 </code></pre>
-<p>הסיסקול dup יוצר file descriptor חדש שמתאר את אותו ה-file description, בלי close on execute (שנראה למה זה שימושי בפרוססים בסיסיים).</p>
-<p>ו-dup2 מקבל גם את המספר של ה-file descriptor החדש שאנחנו רוצים. אם הוא כבר תפוס אז dup2 סוגר אותו ומחליף בקובץ שלנו.</p>
-<p>ו-dup3 דומה ל-dup2 אבל הוא עושה שגיאה אם olfd == newfd, ואפשר להעביר אליו O_CLOEXEC.</p>
-<p><a href="https://man7.org/linux/man-pages/man2/dup.2.html">עמוד ב-man</a></p>
+<p>כל תהליך שרץ התחיל בגלל שקראו לexecve. הוא מקבל pathname שהולך לקובץ שרוצים להריץ, ארגומנטים להעביר ב-argv, ומשתני סביבה מהצורה key=value שאיתם הפרוסס ירוץ. גם ב-argv וגם ב-envp האיבר האחרון חייב להיות NULL (בדומה למחרוזת).</p>
+<p>הסיסקול בעצם לוקח את התהליך שרץ כרגע, ופשוט מחליף את כולו בתהליך החדש - ממפה את הקוד שלו לזכרון, מעיף את הקוד הישן מהזכרון (מחזיר לקרנל), וממפה מחסנית ו-heap חדשים מהתנור. התהליך לא חדש - יש לו אפילו אותו PID, אבל כל הזכרון שלו מוחלף.</p>
+<p><strong>הערות:</strong></p>
+<ul>
+<li>כל ה-threads האחרים (אלה שלא קראו ל-execve) מתים באופן טרגי.</li>
+<li>כל ה-open file descriptors עוברים ב-execve חוץ מאלה שמוגדר עליהם close on execute (למשל אם הם נפתחו עם O_CLOEXEC).</li>
+</ul>
+<p><a href="https://man7.org/linux/man-pages/man2/execve.2.html">עמוד ב-man</a></p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                                                    <a rel="prev" href="../basic_files/syscall-2-open.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                                    <a rel="prev" href="../basic_processes/introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
-                                                    <a rel="next" href="../basic_files/syscall-3-close.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                                    <a rel="next" href="../basic_processes/syscall-57-58-56-fork-vfork-clone.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -172,11 +173,11 @@ int dup3(int oldfd, int newfd, int flags)
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                                    <a rel="prev" href="../basic_files/syscall-2-open.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                    <a rel="prev" href="../basic_processes/introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
-                                    <a rel="next" href="../basic_files/syscall-3-close.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                    <a rel="next" href="../basic_processes/syscall-57-58-56-fork-vfork-clone.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                             </nav>
