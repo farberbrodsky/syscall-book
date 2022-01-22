@@ -1,5 +1,4 @@
-# קבצים בסיסיים
-## סיסקול 0 - read
+# סיסקול 0 - read
 ```c
 ssize_t read(int fd, void *buf, size_t count)
 ```
