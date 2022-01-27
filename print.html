@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> מבוא</a></li><li class="chapter-item expanded "><a href="basic_files/introduction.html"><strong aria-hidden="true">2.</strong> קבצים בסיסיים</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="basic_files/syscall-0-read.html"><strong aria-hidden="true">2.1.</strong> סיסקול 0 - read</a></li><li class="chapter-item expanded "><a href="basic_files/syscall-1-write.html"><strong aria-hidden="true">2.2.</strong> סיסקול 1 - write</a></li><li class="chapter-item expanded "><a href="basic_files/syscall-2-open.html"><strong aria-hidden="true">2.3.</strong> סיסקול 2 - open</a></li><li class="chapter-item expanded "><a href="basic_files/syscall-32-33-292-dup-dup2-dup3.html"><strong aria-hidden="true">2.4.</strong> סיסקול 32, 33, 292 - dup, dup2, dup3</a></li><li class="chapter-item expanded "><a href="basic_files/syscall-3-close.html"><strong aria-hidden="true">2.5.</strong> סיסקול 3 - close</a></li></ol></li><li class="chapter-item expanded "><a href="basic_processes/introduction.html"><strong aria-hidden="true">3.</strong> פרוססים בסיסיים</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="basic_processes/syscall-59-execve.html"><strong aria-hidden="true">3.1.</strong> סיסקול 59 - execve</a></li><li class="chapter-item expanded "><a href="basic_processes/syscall-57-58-56-fork-vfork-clone.html"><strong aria-hidden="true">3.2.</strong> סיסקול 57, 58, 56 - fork, vfork, clone</a></li><li class="chapter-item expanded "><a href="basic_processes/syscall-22-293-pipe-pipe2.html"><strong aria-hidden="true">3.3.</strong> סיסקול 22, 293 - pipe, pipe2</a></li><li class="chapter-item expanded "><a href="basic_processes/pipe-fork-execve-example.html"><strong aria-hidden="true">3.4.</strong> דוגמה של pipe, fork ו-execve</a></li></ol></li></ol>            </div>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> מבוא</a></li><li class="chapter-item expanded "><a href="basic_files/introduction.html"><strong aria-hidden="true">2.</strong> קבצים בסיסיים</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="basic_files/syscall-0-read.html"><strong aria-hidden="true">2.1.</strong> סיסקול 0 - read</a></li><li class="chapter-item expanded "><a href="basic_files/syscall-1-write.html"><strong aria-hidden="true">2.2.</strong> סיסקול 1 - write</a></li><li class="chapter-item expanded "><a href="basic_files/syscall-2-open.html"><strong aria-hidden="true">2.3.</strong> סיסקול 2 - open</a></li><li class="chapter-item expanded "><a href="basic_files/syscall-32-33-292-dup-dup2-dup3.html"><strong aria-hidden="true">2.4.</strong> סיסקול 32, 33, 292 - dup, dup2, dup3</a></li><li class="chapter-item expanded "><a href="basic_files/syscall-3-close.html"><strong aria-hidden="true">2.5.</strong> סיסקול 3 - close</a></li></ol></li><li class="chapter-item expanded "><a href="basic_processes/introduction.html"><strong aria-hidden="true">3.</strong> פרוססים בסיסיים</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="basic_processes/syscall-59-execve.html"><strong aria-hidden="true">3.1.</strong> סיסקול 59 - execve</a></li><li class="chapter-item expanded "><a href="basic_processes/syscall-57-58-56-fork-vfork-clone.html"><strong aria-hidden="true">3.2.</strong> סיסקול 57, 58, 56 - fork, vfork, clone</a></li><li class="chapter-item expanded "><a href="basic_processes/syscall-61-waitpid.html"><strong aria-hidden="true">3.3.</strong> סיסקול 61 - waitpid</a></li><li class="chapter-item expanded "><a href="basic_processes/syscall-22-293-pipe-pipe2.html"><strong aria-hidden="true">3.4.</strong> סיסקול 22, 293 - pipe, pipe2</a></li><li class="chapter-item expanded "><a href="basic_processes/pipe-fork-execve-example.html"><strong aria-hidden="true">3.5.</strong> דוגמה של pipe, fork ו-execve</a></li></ol></li></ol>            </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
@@ -307,6 +307,40 @@ int dup3(int oldfd, int newfd, int flags)
 </code></pre>
 <p>גרסה מוכללת של fork ו-vfork ועוד לעשות <em>הכל</em> אבל ממש <em>הכל</em> (כולל גם ת'רדים, <a href="https://opensource.com/resources/what-are-linux-containers">קונטיינרים</a>, ..., הכל בflagים). מעבירים ל-clone פונקציה שרצה עם הארגומנט arg ומשתמש במחסנית שב-stack (שזה כבר ממש לא נוח). מה ש-fn מחזיר הוא ה-exit status של ה-child process.</p>
 <p><a href="https://man7.org/linux/man-pages/man2/clone.2.html">עמוד ב-man</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="סיסקול-61---waitpid"><a class="header" href="#סיסקול-61---waitpid">סיסקול 61 - waitpid</a></h1>
+<p>גם wait וגם waitpid פשוט קוראים לwait4 מבפנים (שהוא מספר הסיסקול  61 אז קצת שיקרתי בכותרת פה) אבל wait4 פחות פופולרי כי מה שהוא מוסיף זה את היכולת להחזיר גם סטטיסטיקות על השימוש במעבד ובזיכרון.</p>
+<pre><code class="language-c">pid_t wait(int *wstatus)
+pid_t waitpid(pid_t pid, int *wstatus, int options)
+</code></pre>
+<p>ב-pid אפשר להעביר:</p>
+<ul>
+<li>מספר חיובי - לחכות לchild process שה-pid שלו שווה ל-pid.</li>
+<li>-1 - לחכות לאיזשהו child process. הסיסקול <code>wait(x)</code> שקול ל-<code>waitpid(-1, x, 0)</code></li>
+</ul>
+<p>יש <a href="https://www.man7.org/linux/man-pages/man2/getpgid.2.html#NOTES">עמוד ב-man</a> על הבאים אבל הם לא מאוד רלוונטים (שימושי בשביל למממש פיצ'רים מתקדמים של job control בshell):</p>
+<ul>
+<li>0 - אותו process group id כמו שלנו.</li>
+<li>שלילי - כל process עם אותו ה-process group id.</li>
+</ul>
+<p>בoptions אפשר להעביר:</p>
+<ul>
+<li>WNOHANG - לחזור מיד אם שום פרוסס לא עצר</li>
+<li>WUNTRACED - לחזור גם אם פרוסס עצר אבל אין ptrace (עוד לא הגענו לזה, סיסקול מגניב).</li>
+<li>WCONTINUED - לחזור גם אם child חזר לתחיה בגלל SIGCONT שממשיך פרוסס שנעצר.</li>
+</ul>
+<p>ואז waitpid מחזיר בסוף את ה-pid ואם wstatus הוא לא NULL אז הוא מחזיר אליו מידע על נסיבות השינוי במצב הפרוסס. את wstatus קוראים עם המקרואים הבאים:</p>
+<ul>
+<li>WIFEXITED(wstatus) - אם הchild עצר כרגיל</li>
+<li>WEXITSTATUS(wstatus) - להריץ רק אם WIFEXITED הוא true. זה הexit status.</li>
+<li>WIFSIGNALED(wstatus), WTERMSIG(wstatus) - אם הפרוסס נעצר בגלל סיגנל כמו SIGKILL.</li>
+</ul>
+<p><strong>למתקדמים</strong>:</p>
+<ul>
+<li>WCOREDUMP(wstatus) - האם נוצר coredump (להריץ רק אם WIFSIGNALED)</li>
+<li>WIFSTOPPED, WSTOPSIG - דורשים WUNTRACED או ptrace</li>
+<li>WIFCONTINUED - דורש WCONTINUED</li>
+</ul>
+<p><a href="https://man7.org/linux/man-pages/man2/waitpid.2.html">עמוד בman</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="סיסקול-22-293---pipe-pipe2"><a class="header" href="#סיסקול-22-293---pipe-pipe2">סיסקול 22, 293 - pipe, pipe2</a></h1>
 <pre><code class="language-c">int pipe(int pipefd[2])
 int pipe2(int pipefd[2], int flags)
@@ -381,8 +415,6 @@ int main() {
 <details><summary>רמז</summary>
 צריך עוד pipe ש-grep יכתוב אליו ואז אפשר לקרוא מה-pipe הזה.
 </details>
-<h1 id="todo-אני-צריך-לכתוב-על-waitpid"><a class="header" href="#todo-אני-צריך-לכתוב-על-waitpid">TODO אני צריך לכתוב על waitpid!!!</a></h1>
-
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
